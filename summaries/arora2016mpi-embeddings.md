@@ -38,11 +38,11 @@ $$
 $$
 
 ## Key Contribution 
-**This paper proposes a generative model for word embeddings that provides a
-theoretical justification of** $$(\ref{low-rank-pmi})$$ **and word2vec
-and GloVe**. The key assumption it makes is that word vectors, the latent
+*This paper proposes a generative model for word embeddings that provides a
+theoretical justification of* $$(\ref{low-rank-pmi})$$ *and word2vec
+and GloVe*. The key assumption it makes is that word vectors, the latent
 variables of the model, are spatially isotropic (intuition: "no preferred
-direction in space". Isotropy of low-dimensional vectors helps explain
+direction in space"). Isotropy of low-dimensional vectors helps explain
 the linear structure of word vectors as well.
 
 ## The Generative Model
@@ -53,14 +53,18 @@ that measures the correlation with the discourse vector. In particular:
 
 $$\Pb(w $$ is the  $$t$$-th word $$\mid c_t) \propto \exp \inner{c_t}{v_w}$$.
 
-$$c_{t+1} := c_t +$$ a small random displacement. **Under this model, the authors
+$$c_{t+1} := c_t +$$ a small random displacement. *Under this model, the authors
 prove that the co-occurrence probabilities and marginal probabilities
-are functions of the word vectors; optimizing this relation is one way of
-materializing the actual word vectors.**
+are functions of the word vectors; this is useful when optimizing the
+likelihood function* $$\ell = \log \prod_{w, w'} p(w, w')^{X_{w,w'}}$$.
 
 
 ## Commentary
 * This paper answers an interesting question: Why is it that a nonlinear model
   like word2vec produces outputs that have linear structures
   (e.g., king - man = woman)?
+* It's really cool that a relatively simple generative model grounded in a
+  solid theoretical foundation produces results that are competitive with
+  neural network models.
+  
 
