@@ -41,8 +41,12 @@ body {
   color: gray;
 }
 
-a:link, a:visited {color: #38b3d8; text-decoration: none; }
-a:active, a:hover, a:visited, a:focus {color: #00a6d8; text-decoration: none; }
+a.title:link, a.title:visited {color: #333; text-decoration: none;}
+a.title:active, a.title:hover, a.title:focus {
+  color: #00a6d8; text-decoration: none;
+}
+a:link, a:visited {color: #38b3d8; text-decoration: none;}
+a:active, a:hover, a:focus {color: #00a6d8; text-decoration: none;}
 
 p {
   margin-top: 0em;

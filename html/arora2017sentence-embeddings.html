@@ -9,7 +9,74 @@
 
 <body>
   <div id="container">
-<h1 id="a-simple-but-tough-to-beat-baseline-for-sentence-embeddings-arora-2017httpsopenreviewnetpdfidsyk00v5xx"><a href="https://openreview.net/pdf?id=SyK00v5xx">A Simple But Tough-To-Beat Baseline for Sentence Embeddings (Arora 2017)</a></h1>
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  $$
+  </p>
+
+<h1 id="a-simple-but-tough-to-beat-baseline-for-sentence-embeddings-arora-2017httpsopenreviewnetpdfidsyk00v5xx"><a href="https://openreview.net/pdf?id=SyK00v5xx">A Simple but Tough-to-Beat Baseline for Sentence Embeddings (Arora 2017)</a></h1>
+
+<p>The thesis:</p>
+
+<blockquote>
+  <p>Use word embeddings computed using one of the popular methods on unlabeled
+corpus like Wikipedia, represent the sentence by a weighted average of the
+word vectors, and then modify them a bit using PCA/SVD. This weighting
+improves performance by about 10% to 30% in textual similarity tasks, and
+beats sophisticated supervised methods including RNN’s and LSTMs … This
+simple method should be used as the baseline to beat in the future,
+especially when labeled training data is scarce or nonexistent.</p>
+</blockquote>
+
+<p>This paper uses a modified version of the generative model proposed
+in <a href="arora2016pmi-embeddings.html">Arora 2016</a> in order to obtain a closed
+form estimate of the sentence vector. The sentence vector <script type="math/tex">c_s</script> is assumed to
+be time-invariant. Two modifications are made that account
+for the observation that words appear out of context at times, and that
+some frequent words appear very often and without regard to the topic
+of conversation. In math:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\Pb[w \in s \mid c_s] &= \alpha p(w) + (1-\alpha) \exp
+\inner{\tilde{c}_s}{v_w}/Z_{\tilde{c}_s}, \\
+\tilde{c}_s &= \beta c_0 + (1-\beta)c_s
+\end{align*} %]]></script>
+
+<p>The MLE derivation is short, and the upshot is nice:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\hat{c}_{s} &= \sum_{w \in s} \frac{a}{p(w) + a}v_w \\
+a &= \frac{1 - \alpha}{\alpha Z}.
+\end{align*} %]]></script>
+
+<p>In practice, <script type="math/tex">a</script> is treated as a hyper-parameter. The final sentence vector
+is obtained by subtracting out the first principal component in order to
+“denoise” the data:</p>
+
+<script type="math/tex; mode=display">\hat{c}_{s} := \hat{c}_{s} - \inner{\hat{c}_s}{u} u.</script>
+
+<p>The experimental upshot is also nice: the obtained sentence vectors either match
+or outperform neural methods on similarity, entailment, and sentiment tasks.</p>
+
+<h2 id="commentary">Commentary</h2>
+<ul>
+  <li>Arora observes that the average of word vectors “have huge components along
+semantically meaningless directions.” I don’t fully grasp his explanation
+as to why this is the case.</li>
+  <li>From the paper: “We see that the model allows a word w unrelated to the discourse
+ <script type="math/tex">c_s</script> to be omitted for two reasons: a) by chance from the term
+ <script type="math/tex">\alpha p(w)</script> b) if <script type="math/tex">w</script> is correlated with the common discourse vector
+ <script type="math/tex">c_0</script>.” I believe “omitted” should actually be <em>emitted</em>.</li>
+</ul>
 
   <script type="text/x-mathjax-config">
       MathJax.Hub.Config({

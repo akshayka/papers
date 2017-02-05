@@ -11,14 +11,6 @@ There are two popular classes of word embedding techniques:
 A re-weighting scheme used in (1) is to replace the co-occurrence statistics
 with the *pointwise mutual information* between two words.
 
-<p hidden>
-$$
-\newcommand{\pmi}{\operatorname{pmi}}
-\newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
-\newcommand{\Pb}{\operatorname{Pr}}
-$$
-</p>
-
 The pointwise mutual information (PMI) of a pair of outcomes $$x \in X$$,
 $$y \in Y$$, $$X$$, $$Y$$ discrete random variables measures the extent to
 which their joint distribution differs from the product of the marginal
