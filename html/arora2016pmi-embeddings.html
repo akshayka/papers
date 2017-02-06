@@ -18,6 +18,25 @@
   \newcommand{\pmi}{\operatorname{pmi}}
   \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
   \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
   $$
   </p>
 

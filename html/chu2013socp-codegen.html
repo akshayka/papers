@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="code-generation-for-embedded-second-order-cone-programming-chu-2013httpswebstanfordeduboydpaperspdfecoscodegeneccpdf"><a href="https://web.stanford.edu/~boyd/papers/pdf/ecos_codegen_ecc.pdf">Code Generation for Embedded Second-Order Cone Programming (Chu 2013)</a></h1>
+
+<p>Key idea: Chu, et. al describe a <em>parser/generator</em> that takes a parametrized
+convex program, converts it to an equivalent SOCP, and generates code that can
+be used to solve the problem.</p>
+
+<h2 id="novel-contributions">Novel contributions</h2>
+
+<ol>
+  <li>SOCPs encompass a large class of convex programs; previous canonicalization
+suites targeted smaller problem clases, like QPs or QCQPs. Recall
+  that linear programs, QPs, and QCQPs are all SOCPs.</li>
+  <li>Problem parameters must enter through specific functions; this interface
+allows the code generator to circumvent all floating point operations.</li>
+</ol>
+
+<p>Problem convexity is verified via disciplined convex programming.</p>
+
+<h2 id="problem-statement-canonicalization">Problem Statement: Canonicalization</h2>
+
+<p>The canonicalization takes as input a convex optimization problem and outputs
+an equivalent SOCP.</p>
+
+<p><strong>Input</strong>: convex optimization problem description.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\optmin{x}{f_{0}(x; \alpha)}{f_i(x; \alpha) \leq g_i(x; \alpha),
+\quad i=1\ldots,m \\ & & & u_i(x; \alpha) = v_i(x; \alpha)} %]]></script>
+
+<p><strong>Output</strong>: equivalent second-order cone program</p>
+
+<script type="math/tex; mode=display">\optmin{x, s}{c^Tx}{Ax + s = b, \quad s \in \mathcal{K},}</script>
+
+<p>where <script type="math/tex">\mathcal{K}</script> is the cross product of <script type="math/tex">q</script>
+second-order cones and <script type="math/tex">\{0\}^r</script>.</p>
+
+<h2 id="background-disciplined-convex-programming">Background: Disciplined Convex Programming</h2>
+
+<p>The three building blocks of DCP are atoms, expressions, and convex problems;
+atoms are the atomic units, expressions build from atoms, and convex problems
+build from expressions.</p>
+
+<h3 id="atoms">Atoms</h3>
+<p>An atom is a built-in function like plus, minus, sum, maximum, square, or norm.
+There are three classes of atoms: parametric atoms, scalar atoms, and
+vector atoms. All atoms return scalars, except scalar atoms evaluated at
+vector arguments return elementwise-transformed vectors.</p>
+
+<p>Atoms have three key properties: (1) output sign, (2) monotonicity per argument,
+and (3) curvature. The output sign can depend upon the signs of inputs;
+a vector is positive if and only if every entry is positive. The monotonicity
+of parametric atoms depends upon the sign of their parameters.</p>
+
+<h3 id="expressions">Expressions</h3>
+<p>An expression is a vector variable or an atom evaluated at a subexpression
+(note the recursive definition); the leaves of expressions are the variables,
+internal nodes are atoms, and each atom is evaluated at its children. For
+example, <script type="math/tex">\phi^{\operatorname{square}}</script> is an atom, but
+<script type="math/tex">\phi^{\operatorname{square}}(x)</script> a subexpression. The sign of an expression
+is computed bottom-up; variables have unknown sign (but some atoms,
+like the square atom, have sign independent of its inputs).</p>
+
+<p>Convexity is also verified in a bottom-up fashion. All variables are affine;
+<script type="math/tex">\phi(g_1(x), \ldots, g_n(x); \alpha)</script> is convex if <script type="math/tex">\phi</script> is convex and
+one of the following holds for each <script type="math/tex">i</script>: (1) <script type="math/tex">g_i</script> is affine,
+(2) <script type="math/tex">\phi</script> is increasing in the <script type="math/tex">i</script>th argument and <script type="math/tex">g_i</script> is convex,
+or (3) <script type="math/tex">\phi</script> is decreasing in the <script type="math/tex">i</script>th argument and
+<script type="math/tex">g_i</script> is concave.</p>
+
+<h3 id="convexity">Convexity</h3>
+<p>Convexity can be determined by the curvature of all its expressions and atoms.
+Note that DCP-compliance is sound but not complete.</p>
+
+<h2 id="canonicalization">Canonicalization</h2>
+
+<p>The first step is to convert the original problem into <strong>Smith form</strong>.
+A new variable <script type="math/tex">t_i</script> is introduced for each node <script type="math/tex">i</script> in the expression
+tree, with <script type="math/tex">t_0</script> mapping to the root of the tree; then, the problem
+is written as “minimize <script type="math/tex">t_0</script>” subject to <script type="math/tex">t_i</script> equals the <script type="math/tex">i</script>-th
+subexpression, for each subexpression <script type="math/tex">i</script>. In order to convexify
+the smith problem, the equality constraints <script type="math/tex">t_i = \phi_i(t_{i+1})</script>
+for convex <script type="math/tex">\phi_i</script> are replaced with inequality constraints
+<script type="math/tex">t_i \geq \phi_i(t_{i+1})</script>; this representation is known as <em>relaxed</em>
+Smith form. It can be shown (this is key) that the optimal solution of
+the relaxed Smith form of a DCP-compliant problem is optimal for the original
+problem as well.</p>
+
+<p>In the final step, nonlinear functions in the relaxed Smith form are
+replaced with the “optimal value of a partially-specified convex optimization
+problem.” This is known as the graph implementation for convex problems.
+Finally, the resulting SOCP is converted into standard form.</p>
+
+<p><em>Note that the only work done is copying problem data into SOCP data.</em></p>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>
