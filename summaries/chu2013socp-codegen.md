@@ -92,3 +92,9 @@ problem." This is known as the graph implementation for convex problems.
 Finally, the resulting SOCP is converted into standard form.
 
 *Note that the only work done is copying problem data into SOCP data.*
+
+## Commentary
+CVXPY (version < 1.0) more or less implements this paper -- it canonicalizes
+its problems by converting them into SOCPs. You can see this in the
+source code (available on Github): each atom implements a function named
+graph_implementation, and this function is invoked during canonicalization.
