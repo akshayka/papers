@@ -12,7 +12,7 @@ html/%.html: summaries/%.md include/header.html include/footer.html
 	kramdown $< >> $@
 	cat include/footer.html >> $@
 
-index.html: $(HTMLS)
+index.html: $(HTMLS) include/index_header.html include/index_footer.html
 	cat include/index_header.html > $@
 	python generate_index.py >> $@
 	cat include/index_footer.html >> $@
