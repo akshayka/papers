@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="tensorflow-a-system-for-large-scale-machine-learning-mongat-2016httpswwwusenixorgsystemfilesconferenceosdi16osdi16-abadipdf"><a href="https://www.usenix.org/system/files/conference/osdi16/osdi16-abadi.pdf">TensorFlow: A System for Large-Scale Machine Learning (Mongat 2016)</a></h1>
+
+<h2 id="overview">Overview</h2>
+<p>TensorFlow uses a dataflow graph to represent both computation and state.
+Nodes represent computation upon mutable data, and edges carry tensors, or
+multi-dimensional arrays, between nodes. The system uses synchronous replication
+successfully, contradicting the folklore that asynchronous replication is
+needed for scalability.</p>
+
+<p>DistBelief, the prequel to TensorFlow, was limited by its parameter server
+architecture; at times it is desirable to offload computation onto the
+server that owns the data. As such, TensorFlow eschews the separation
+of workers and parameter servers in favor of a hybrid model. The key design
+principles of TensorFlow are</p>
+
+<ol>
+  <li>graphs are composed of primitive operators,</li>
+  <li>execution is deferred, and</li>
+  <li>a common abstraction supports any accelerator that implements its interface.</li>
+</ol>
+
+<p>Note that a batch dataflow model, which favors large batches of computation and
+requires immutable inputs and deterministic computation, is not appropriate
+if stochastic gradient descent is your optimization method of choice. 
+TensorFlow allows for mutable state ‘‘that can be shared between different
+executions of the graph’’ and ‘‘concurrect executions or overlapping
+subgraphs.’’</p>
+
+<h2 id="the-graph-elements">The Graph Elements</h2>
+
+<h3 id="tensors">Tensors</h3>
+<p>A <strong>tensor</strong> is a multi-dimensional array that stores primitive types; one
+of those primitive types is a string, which holds arbitrary binary data.
+All tensors are dense in order to ensure that memory allocation and
+serialization can be implemented efficiently. Spare vectors can be encoded
+as either variable-length string elements or tuples of dense tensors. The
+shape of a tensor can vary along its dimensions.</p>
+
+<h3 id="stateless-operations">Stateless Operations</h3>
+<p><strong>Stateless operations</strong> map one list of tensors to another list of
+tensors. The simplest way to think of such an operation is as a mathematical
+function.</p>
+
+<h3 id="variables">Variables</h3>
+<p>A <strong>variable</strong> is a stateful operation. Each variable owns a mutable
+buffer that, for example, holds the model parameters as it is trained.
+Variables take no inputs. They instead expose a <code>read</code> operation and various
+write operations. An example of a write operation is <code>AssignAdd</code>, which
+is semantically equivalent to the familiar ‘‘plus-equals.’’</p>
+
+<h3 id="queues">Queues</h3>
+<p>Queues allow for concurrent access to the tensors that they hold. They can
+provide backpressure when they are full and are used to implement streaming
+computation between subgraphs.</p>
+
+<h2 id="distributed-execution-and-dynamic-control-flow">Distributed Execution and Dynamic Control Flow</h2>
+<p>Every operation is placed on a <em>device</em>, and each device assembles its
+operations into a subgraph. TensorFlow is ‘‘optimized for executing large
+subgraphs repeatedly with low latency.’’</p>
+
+<p>Conditional statements and other control flow primitives are supported.</p>
+
+<h2 id="automatic-differentiation-and-optimization">Automatic Differentiation and Optimization</h2>
+<p>Users can handroll their gradients if they so desire, or they can rely on
+the automatic differentiation. It is simple to implement new optimization
+algorithms using the TensorFlow framework; no code changes are required.</p>
+
+<h2 id="synchronous-replica-coordination">Synchronous Replica Coordination</h2>
+<p>Both asynchronous and synchronous SGD are supported; the latter converges
+to a good solution faster than the former (both in practice and, I assume,
+in theory). In the synchronous scheme, firing up redundant workers and
+taking the updates from those who finish first improves throughput by up to
+10 percent.</p>
+
+<h2 id="commentary">Commentary</h2>
+<ul>
+  <li>The authors list improved models, larger datasets, and software platforms
+that allow for better use of hardware as the primary drivers of the machine
+learning renaissance, in that order. I am surprised that improved models
+is first in that list.</li>
+  <li>I like the decision to encode sparse data as assemblages of dense tensors.
+But does this representation allow for the underlying linear algebra
+to make use of sparse matrix structure?</li>
+  <li>An interesting problem that remains unsolved (at Google, at the time of
+writing the paper): How can we accommodate dynamic dataflow graphs for
+tasks like deep reinforcement learning?</li>
+</ul>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>
