@@ -81,3 +81,5 @@ taking the updates from those who finish first improves throughput by up to
 * An interesting problem that remains unsolved (at Google, at the time of
   writing the paper): How can we accommodate dynamic dataflow graphs for
   tasks like deep reinforcement learning?
+* I think it would be useful if TensorFlow & researchers were together
+  working on the problem of intelligent initialization for nonconvex problems.
