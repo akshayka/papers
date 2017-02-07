@@ -18,6 +18,7 @@
   \newcommand{\pmi}{\operatorname{pmi}}
   \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
   \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
   \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
   \newcommand{\optmin}[3]{
 	\begin{align*}
@@ -133,6 +134,12 @@ problem.” This is known as the graph implementation for convex problems.
 Finally, the resulting SOCP is converted into standard form.</p>
 
 <p><em>Note that the only work done is copying problem data into SOCP data.</em></p>
+
+<h2 id="commentary">Commentary</h2>
+<p>CVXPY (version &lt; 1.0) more or less implements this paper – it canonicalizes
+its problems by converting them into SOCPs. You can see this in the
+source code (available on Github): each atom implements a function named
+graph_implementation, and this function is invoked during canonicalization.</p>
   <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         "HTML-CSS": { availableFonts: ["TeX"] },
