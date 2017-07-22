@@ -95,6 +95,7 @@ Finally, the resulting SOCP is converted into standard form.
 
 ## Commentary
 CVXPY (version < 1.0) more or less implements this paper -- it canonicalizes
-its problems by converting them into SOCPs. You can see this in the
-source code (available on Github): each atom implements a function named
+its problems by converting them into cone programs, including SOCPs. You can
+see this in the source code (available on Github): each atom implements a
+function named
 graph_implementation, and this function is invoked during canonicalization.
