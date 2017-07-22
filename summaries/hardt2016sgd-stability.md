@@ -1,6 +1,7 @@
 # [Train Faster, Generalize Better: Stability of Stochastic Gradient Descent (Hardt 2016)](https://arxiv.org/pdf/1509.01240v2.pdf)
 
-The "nutshell": fast training prevents overfitting.
+Nut graf: fast training prevents overfitting, and a mathematical way to state
+          this.
 
 ## Background
 Recall a $$\textbf{defintion}$$: Let $$\mathcal{D}$$ be the training data,
