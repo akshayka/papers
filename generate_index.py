@@ -21,10 +21,10 @@ for md_file, html_file in zip(md_files, html_files):
         title = match.group(1)
         author = match.group(2)
         year = int(match.group(3))
-        meta = f.readline()
+        meta = f.readline().strip()
         if meta == PDF_META:
             basename = md_file.split('summaries/')[1]
-            url = 'pdf/' + basename.split(META_EXT)[0] + '.pdf'
+            url = 'pdf/' + basename.split('.md')[0] + '.pdf'
         else:
             url = html_file
         list_items.append(ListItem(title, author, year, url))
