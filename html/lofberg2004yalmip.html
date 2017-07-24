@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="yalmip-a-toolbox-for-modeling-and-optimization-in-matlab-lofberg-2016httpieeexploreieeeorgabstractdocument1393890"><a href="http://ieeexplore.ieee.org/abstract/document/1393890/">YALMIP: A Toolbox for Modeling and Optimization in MATLAB (Lofberg 2016)</a></h1>
+
+<p><strong>Nut graf</strong>: YALMIP is a MATLAB-embedded domain specific language for
+mathematical optimization. It is among the oldest non-commerical modeling
+langauges, and can target a variety of convex and non-convex solvers.</p>
+
+<p>YALMIP, an orphaned acronym that once stood for "Yet Another LMI Parser",
+supports a hodgepodge of problem classes: LPs, QPs, SOCPs, and SDPs among them.</p>
+
+<p>The paper consists largely of examples that transcribe somewhat complex SDPs
+into but a few lines of YALMIP. The thesis that motivated the creation of
+YALMIP is: Many control problems can be reduced to SDPs, and SDPs can
+be solved efficiently; however, converting problems into LMI/SDP form
+and interfacing with software packages that solve SDPs is a tedious task.
+YALMIP democraticizes this process by abstracting away the compilation of
+naturally expressed mathematical programs to solver-defined standard forms.</p>
+
+<p>Lofberg presents two applications that I find interesting: sum-of-squares 
+(SOS) decompositions and multiparametric programming. In SOS, the goal is to
+write a polynomial <script type="math/tex">p(x)</script> as a positive semidefinite quadratic form with 
+respect to some polynomial vector <script type="math/tex">v(x)</script>. Such a decomposition, if it were
+to exist, would certify that <script type="math/tex">p(x)</script> were non-negative. SOS is trending
+in the theoretical computer science community, where it is being used to
+prove lower bounds.</p>
+
+<p>Multiparametric programming is a type of optimization where the goal is to
+find an explicit solution to parametrized optimization problems, reducing
+a sequence of optimization problems to a sequence of function evaluations.
+Perhaps the simplest example of this is the orthogonal projection problem:
+the projection onto a subspace is parametrized by the point that is being
+projected. All that is needed for an explicit solution is to compute the
+linear projector; with this operator in hand, every
+projection onto the subspace can be computed via a matrix multiply.</p>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript" async
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>
