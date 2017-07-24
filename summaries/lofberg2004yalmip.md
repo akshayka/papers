@@ -1,4 +1,4 @@
-# [YALMIP: A Toolbox for Modeling and Optimization in MATLAB (Lofberg 2016)](http://ieeexplore.ieee.org/abstract/document/1393890/)
+# [YALMIP: A Toolbox for Modeling and Optimization in MATLAB (Lofberg 2004)](http://ieeexplore.ieee.org/abstract/document/1393890/)
 
 **Nut graf**: YALMIP is a MATLAB-embedded domain specific language for
 mathematical optimization. It is among the oldest non-commerical modeling
