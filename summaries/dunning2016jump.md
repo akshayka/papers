@@ -52,7 +52,7 @@ albeit in a forward manner. JuMP diverges from CVX* in that is cannot
 verify convexity of expressions; this means in particular that it cannot
 provide proofs of optimality or infeasibility.
 
-## Extensibility and Solver Callbacks
+## Extensibility
 The authors state that JuMP is easily to extend; i.e., it is easy to
 build further specialized DSLs on top of JuMP. The API is not discussed, so
 it\'s hard to evaluate this claim.
