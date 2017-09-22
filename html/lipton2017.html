@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="the-mythos-of-model-interpretability-lipton-2017httpsarxivorgpdf160603490pdf"><a href="https://arxiv.org/pdf/1606.03490.pdf">The Mythos of Model Interpretability (Lipton 2017)</a></h1>
+
+<p>This paper addresses three questions:</p>
+
+<ol>
+  <li>Why do we want interpretability in the context of supervised machine
+learning?</li>
+  <li>What is meant by <em>interpretability</em> in the context of supervised machine
+learning?</li>
+  <li>What tools do we have to study the interpretability of machine
+learning and especially deep neural network models?</li>
+</ol>
+
+<p>Its thesis is three-fold:</p>
+
+<ol>
+  <li>The desire for interpretability arises from a desire to <em>trust</em> machine
+learning systems, to demonstrate <em>causality</em>, to be assured of
+<em>transferability</em> to unseen data, to uncover latent structure in the
+data (<em>informativeness</em>, and to facilitate <em>ethical decision-making</em>.</li>
+  <li>There are two types of useful interprations: those that afford
+<em>transparency</em> and those that provide for <em>post-hoc</em> explanations.</li>
+  <li>Linear models are not necessarily more interpretable than deep neural
+networks.</li>
+</ol>
+
+<h2 id="desiderata">Desiderata</h2>
+<p>Of the desiderata in (1), trust is ill-defined and causality, I think,
+a straw-man. Ethical decision-making is crucial — the ethics of machine
+learning algorithms and are woefully underexamined when such algorithms
+are deployed. Lipton mentions the questionable use of machine learning models
+for predicting the chances of recidivism in courts of law. Also pressing, in
+my mind, is the use of machine learning to create hyper-personalized
+information filters that would cast individuals into static molds and more
+worrisome as objects to be optimized. But in this latter example,
+ethical decision-making is not a matter of <em>interpretability</em> — the
+models for filtering information are interpretable enough, at least at a macro
+level; it is rather a matter of whether filtering <em>as such</em> is ethical.</p>
+
+<h2 id="types-of-interpretability">Types of Interpretability</h2>
+<p>The paper proposes two types of interpretability.</p>
+
+<p><em>Transparency</em> takes the forms of <em>simulatibility</em>, in that a <em>human</em> should
+be able to simulate the model by hand, and <em>decomposability</em>, in that
+each part of the model admits an intuitive explanation, and <em>algorithmic</em>, 
+in that the model should converge to a unique solution. The first point is
+somewhat silly — the point of computers is to automate tasks that humans cannot
+do in a reasonable amount of time; the second point is fine; the third point
+is silly — unique solutions (one example of algorithmic transparency provided
+by the author) are not even guaranteed in convex land, and
+algorithmic determinism (another example provided by the author) is besides the
+point in machine learning.</p>
+
+<p>A model is <em>post-hoc interpretable</em> if its predictions admit retrospective
+explanations. This section surveys a few standard techniques for querying the
+activations of a trained model (t-SNE of learned representations, sensitivity
+analyses, etc.). All of these post-hoc techniques are also <em>ad hoc</em>.</p>
+
+<h2 id="linear-models">Linear Models</h2>
+<p>Lipton makes a wholly unconvincing argument that linear models are not
+more interpretable than neural networks. He qualifies his argument by saying
+that they are not <em>strictly</em> more interpretable, but this much is of course
+obvious, for deep neural networks include linear models as a special case.
+Lipton makes absolutely no appeal to the statistical properties that
+accompany linear models, a surprising oversight. He states that we do not
+have a theoretical reason why neural networks underperform linear models
+in studying the natural world. This is false; the parameters in
+a linear regression, for example, carry with them information about statistical
+significance (if certain assumptions about the data hold true).</p>
+
+<p>Lipton also argues that linear models are just as succeptible to spoofing
+as deep neural networks. This too is false. As a rule of thumb, the more
+complex your system, the easier it is to spoof it.</p>
+
+<h2 id="commentary">Commentary</h2>
+<p>In my mind, there are two things that matter with respect to interpretability:</p>
+
+<ol>
+  <li>Does this model generalize to unseen data? A model is <em>interpretable</em> if
+hypotheses about generalization hold true after attempts to falsify them.
+I suppose this is more or less the same as Lipton’s transferability.</li>
+  <li>Is the model <em>secure</em>, i.e., is it resistant to spoofing?</li>
+</ol>
+
+<p>Determing the degree to which a model is secure is an open question; perhaps
+it can be studied by using some of the tools that Lipton surveys in his paper.
+It is clear to me, however, that validating the security of a neural network
+model is <em>significantly</em> harder than doing the same for linear ones.</p>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript" async
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>
