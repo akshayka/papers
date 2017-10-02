@@ -19,7 +19,7 @@ blended image.
 
 ### The Algorithm 
 Let $$C$$ denote the content image, $$S$$ the style image, and $$B$$ the blended
-image, and let $$f(C, l)$$ be the representation of $$C$$ in the $$\ell$$-th
+image, and let $$f(C, l)$$ be the representation of $$C$$ in the $$l$$-th
 layer of the network (similarly for $$S$$ and $$B$$). The blended image is
 found by approximately solving the below optimization problem.
 
