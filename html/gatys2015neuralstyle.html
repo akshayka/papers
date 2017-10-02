@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="a-neural-algorithm-of-artistic-style-gatys-2015httpsarxivorgabs150806576"><a href="https://arxiv.org/abs/1508.06576">A Neural Algorithm of Artistic Style (Gatys 2015)</a></h1>
+<p>Gatys et al. present a way to repurpose a deep network trained for image 
+classification to redraw images in the style of some reference image. 
+For example, this method can be used to render arbitrary photographs in the
+style of Van Gogh’s <em>The Starry Night</em>.</p>
+
+<p>Here’s a popular open-source implementation of the paper that includes some
+visual examples: <a href="https://github.com/jcjohnson/neural-style">https://github.com/jcjohnson/neural-style</a>.</p>
+
+<p>The problem is defined by two images: a <em>content</em> image and a <em>style</em> image.
+The goal is to generate a <em>blended</em> image that resembles the <em>content</em> image
+drawn in the fashion of the <em>style</em> image. Here’s an example from the paper:</p>
+
+<p><img src="../assets/starry_night_neural_style.jpg" alt="Starry Night Neural Style" /></p>
+
+<p>In the above picture, the photograph of the waterfront is the content image,
+<em>The Starry Night</em> is the style image, and the starry-night waterfront is the
+blended image.</p>
+
+<h3 id="the-algorithm">The Algorithm</h3>
+<p>Let <script type="math/tex">C</script> denote the content image, <script type="math/tex">S</script> the style image, and <script type="math/tex">B</script> the blended
+image, and let <script type="math/tex">f(C, l)</script> be the representation of <script type="math/tex">C</script> in the <script type="math/tex">\ell</script>-th
+layer of the network (similarly for <script type="math/tex">S</script> and <script type="math/tex">B</script>). The blended image is
+found by approximately solving the below optimization problem.</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{equation*}
+\begin{array}{ll}
+\mbox{minimize} & \alpha \|f(C,\ell) - f(B, \ell)\|^2_F +
+    \beta \sum_{l=0}^{L} w_l \|f(S,l)^Tf(S,l) - f(B,l)^T f(B,l)\|^2_F
+\end{array}
+\end{equation*} %]]></script>
+
+<p>where <script type="math/tex">\ell</script> is fixed, <script type="math/tex">w_l</script> is a weight that incorporates the the size
+of layer (see the paper for details), and <script type="math/tex">B</script> is the optimization variable.
+Gram matrices are used above to capture correlations between the features
+within each layer. The <script type="math/tex">\alpha</script>-weighted expression measures the similarity
+to the content image, while the <script type="math/tex">\beta</script>-weighted term measures the similarity
+to the style image.</p>
+
+<p>In the paper’s notation, <script type="math/tex">P_l</script> corresponds to <script type="math/tex">f(C,l)</script>, <script type="math/tex">A_l</script>
+corresponds to (the gram matrix) of <script type="math/tex">f(S,l)</script>, and <script type="math/tex">F_l</script> corresponds
+to <script type="math/tex">f(B,l)</script>.</p>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript" async
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>

@@ -17,7 +17,14 @@
 * Computational Imaging on the Electric Grid 
 * Convexified Convolutional Neural Networks
 * Feynman's lecture on quantum computers (https://people.eecs.berkeley.edu/~christos/classics/Feynman.pdf)
-* OptNet: Differentiable Optimization as a Layer in Neural Networks
 * ANDERSON ACCELERATION FOR FIXED-POINT ITERATIONS
 * Two Classes of Multisecant Methods for Nonlinear Acceleration
 * ADAM: A METHOD FOR STOCHASTIC OPTIMIZATION
+* Multi-Period Trading via Convex Optimization (http://stanford.edu/~boyd/papers/cvx_portfolio.html)
+* Breaking the Curse of Dimensionality with Convex Neural Networks
+* A Tutorial on Bayesian Optimization of
+Expensive Cost Functions, with Application to Active User Modeling and
+Hierarchical Reinforcement Learning [https://arxiv.org/pdf/1012.2599.pdf]
+* https://people.eecs.berkeley.edu/~jshun/thesis.pdf
+* A practical guide to CNNs and Fisher Vectors for image instance retrieval
+
