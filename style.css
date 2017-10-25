@@ -22,6 +22,32 @@ body {
   font-size: 18px;
 }
 
+blockquote {
+    font-size: 18px;
+    font-style: italic;
+    width: 500px;
+    margin-left: 50px;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 30px;
+    line-height: 1.45;
+    position: relative;
+    border: dashed 1px;
+    border-color: #38b3d8;
+}
+
+blockquote:before {
+    font-family: Georgia;
+    color: #38b3d8;
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -10px;
+    top: -30px;
+}
+
 #container {
   padding-left: 1em;
   padding-right: 1em;

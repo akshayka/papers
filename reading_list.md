@@ -27,4 +27,14 @@ Expensive Cost Functions, with Application to Active User Modeling and
 Hierarchical Reinforcement Learning [https://arxiv.org/pdf/1012.2599.pdf]
 * https://people.eecs.berkeley.edu/~jshun/thesis.pdf
 * A practical guide to CNNs and Fisher Vectors for image instance retrieval
-
+* SAGA: A Fast Incremental Gradient Method With Support for Non-Strongly Convex Composite Objectives
+* Stochastic Dual Coordinate Ascent Methods for Regularized Loss Minimization
+* Accelerating Stochastic Gradient Descent using Predictive Variance Reduction
+* http://www.cds.caltech.edu/~doyle/hot/SDPrelaxations.pdf
+* Occupy the Cloud: Distributed Computing for the 99% (PyWren)
+* Improving Efficiency and Scalability of Sum of Squares Optimization:
+Recent Advances and Limitations
+* NP-hardness of deciding convexity of quartic polynomials and related problems
+* Tractable fitting with convex polynomials via sum-of-squares
+* LAGRANGE MULTIPLIERS AND OPTIMALITY
+* Mastering the game of Go without human knowledge
