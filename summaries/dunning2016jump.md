@@ -2,7 +2,7 @@
 
 **Nut graf**: [JuMP](https://jump.readthedocs.io/en/latest/index.html) is a
 Julia-embedded modeling language for mathematical optimization that was written
-with performance in mind; its salient features include automatic differentation
+with performance in mind; its salient features include automatic differentiation
 of user-defined functions, efficient parsing of updated problems, support for
 user-defined problems and solve methods, and solver callbacks. JuMP targets
 linear, mixed-integer, quadratic, conic-quadratic, semidefinite, and nonlinear
@@ -16,7 +16,7 @@ and solves it; the substrate only accepts programs that are specified in
 a particular standard form, and it is the responsibility of the client to
 express her problem in an acceptable fashion. It is often not
 at all obvious to clients how to encode their problems using the solving
-substrate\'s standard form; this encoding proces may require 
+substrate\'s standard form; this encoding proces may require
 clever re-expressions of the original problem or onerous stuffing of
 the problem\'s constraints into a rigid matrix structure.
 
