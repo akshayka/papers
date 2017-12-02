@@ -38,3 +38,7 @@ Recent Advances and Limitations
 * Tractable fitting with convex polynomials via sum-of-squares
 * LAGRANGE MULTIPLIERS AND OPTIMALITY
 * Mastering the game of Go without human knowledge
+* Interior-point methods for optimization (Nemirovski and Todd)
+* Convergence rate of incremental aggregated gradient algorithms (Pablo Parrilo)
+* Towards Generalization and Simplicity in Continuous Control (kakade)
+

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="the-method-of-projections-for-finding-the-common-point-of-convex-sets-gubin-1966httpswwwsciencedirectcomsciencearticlepii0041555367901139"><a href="https://www.sciencedirect.com/science/article/pii/0041555367901139">The Method of Projections for Finding the Common Point of Convex Sets (Gubin 1966)</a></h1>
+
+<h2 id="overview">1. Overview</h2>
+
+<hr />
+
+<p><em>Section Breakdown</em> <br />
+I.   Methods of successive projection [4.5 pp] <br />
+II.  Proofs of [convergence results] theorems 1 and 2 [8.5 pp] <br />
+III. Rate of convergence [3.5 pp] <br />
+IV.  Examples and Applications [7.5 pp]</p>
+
+<hr />
+
+<p>This paper reviews <em>methods of successive projections</em> for finding a point in
+the intersection of an arbitrary number of convex sets; this problem is known
+as the <em>convex feasibility problem</em>. The family of methods under consideration
+traces back to the alternating projections method of the 1930s, due to Johnn
+von Neumann<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.  Though von Neumann cast it as a routine for finding a point
+in the intersection of two subspaces, his method was later generalized to the
+convex feasibility problem.</p>
+
+<p>Convex cone programs that admit strong duality can be <a href="https://www.akshayagrawal.com/papers/pdf/odonoghue2016scs.pdf">reduced to instances of
+the convex feasibility
+problem</a> via the
+KKT system or the self-dual homogeneous embedding thereof.</p>
+
+<h2 id="key-contributions">2. Key Contributions</h2>
+<p><strong>(A)</strong> Strong convergence results for the method of projections,
+proving that under certain conditions the sequences in question converge
+linearly (presented in section II of the paper).</p>
+
+<p><strong>(B)</strong> A cheap way to accelerate projection methods (presented in section
+III of the paper).</p>
+
+<p>Simple examples show that projection methods are often painfully slow to
+converge, so convergence results are not that interesting. But, because, as we
+shall see, such methods are so simple, accelerating them with minor alterations
+is an attractive prospect.</p>
+
+<h2 id="the-method-of-projections">3. The Method of Projections</h2>
+
+<h4 id="definition-projection">3.1 Definition: Projection</h4>
+<p>A projection of the point <script type="math/tex">x</script> onto a set <script type="math/tex">R</script> of a normed space <script type="math/tex">H</script> is a
+point <script type="math/tex">\Pi_R(x)</script> that minimizes the distance between <script type="math/tex">x</script> and <script type="math/tex">R</script>, in the
+following sense:</p>
+
+<script type="math/tex; mode=display">\|x - \Pi_R(x)\| = \inf_{y \in R} \|x - y\|.</script>
+
+<h4 id="the-convex-feasibility-problem--the-method-of-projections">3.2 The Convex Feasibility Problem &amp; the Method of Projections</h4>
+<p>Let the sets <script type="math/tex">Q_{\alpha_{i}}</script> convex, for <script type="math/tex">i = 1 \ldots n</script>. The <em>convex
+feasibility problem</em> is the problem of finding a common point <script type="math/tex">x \in
+\cap_{i} Q_{\alpha_{i}}</script>.</p>
+
+<p>The method of projections constructs a sequence of points <script type="math/tex">\{x_i\}</script> where
+<script type="math/tex">x_0</script> is arbitrary and <script type="math/tex">x_{k+1}</script> is chosen from <script type="math/tex">x_{k}</script> by selecting a
+set <script type="math/tex">Q_{\alpha(k)}</script> and stepping in the direction of projecting <script type="math/tex">x_k</script> onto
+the selected set, i.e.,</p>
+
+<script type="math/tex; mode=display">x_{k+1} = x_k + \lambda_k(\Pi_{\alpha(k)}(x_k) - x_k), \quad 0 \leq \lambda_k \leq 2.</script>
+
+<p>Different policies for selecting the index <script type="math/tex">\alpha(k)</script> yield different
+instantiations of the method of projections. A simple, classical policy is
+the <strong>cyclic one</strong> that sets as <script type="math/tex">\alpha(k) := \alpha_{(k \mod n) + 1}</script>.</p>
+
+<p>Cyclic projections is an extension of von Neumman’s <strong>alternating
+projections</strong> method: alternating projections is cyclic projections when the
+number of sets <script type="math/tex">n=2</script>. Perhaps surprisingly, the case of <script type="math/tex">n > 2</script> is not any
+more general than <script type="math/tex">n=2</script>: any convex feasibility problem that involves greater
+than 2 sets can be reduced to a higher-dimensional problem with exactly two
+sets: one set is the cartesian product of all the sets from the original
+problem, and the other set is an affine set that enforces block-wise equality
+of the vector.</p>
+
+<h3 id="proof-ingredients">4. Proof Ingredients</h3>
+<p>A proof of convergence for the alternating projections method can be found in
+in [2]<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>, and a more general proof can be found in the reviewed paper.
+Rather than replicate Gubin’s proofs in full, I’ll present their main
+ingredients, i.e., the key lemmas about projections onto convex sets that are
+composed to construct them. In the following, let <script type="math/tex">R</script> be a closed convex set
+and denote the projection of <script type="math/tex">x</script> onto <script type="math/tex">R</script> by <script type="math/tex">\Pi x</script>.</p>
+
+<p><em>Existence and uniqueness.</em> The projection <script type="math/tex">\Pi x</script> exists and is unique.</p>
+
+<p><em>Supporting hyperplane.</em> The vector <script type="math/tex">x - \Pi x</script> supports <script type="math/tex">R</script> at <script type="math/tex">\Pi x</script>, i.e.,</p>
+
+<script type="math/tex; mode=display">(x - \Pi x)^T(y - \Pi x) \leq 0, \quad \forall y \in R.</script>
+
+<p><em>Proof.</em> By convexity of <script type="math/tex">R</script>, convex combinations of <script type="math/tex">y</script> and <script type="math/tex">\Pi x</script>
+are also in <script type="math/tex">R</script>: <script type="math/tex">\lambda y + (1 - \lambda)\Pi x \in R</script> for
+<script type="math/tex">\lambda \in [0, 1]</script>. Because the projection of <script type="math/tex">x</script> is point in <script type="math/tex">R</script> 
+closest to <script type="math/tex">x</script>,</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+\|x - \Pi(x)\|^2 &\leq \|x - (\lambda y + (1 - \lambda) \Pi x) \|^2 \\
+&= \|x - \Pi x\|^2 + \lambda^2\|\Pi x - y\|^2 + 2\lambda(x - \Pi x)^T(\Pi x - y),
+\end{align*} %]]></script>
+
+<p>so in particular <script type="math/tex">(x - \Pi x)^T(y - \Pi x) \leq \lambda \| \Pi x - y\|^2</script>.
+Taking <script type="math/tex">\lambda \rightarrow 0</script> proves the result.</p>
+
+<p><em>Non-expansivity.</em> The projection operator is non-expansive, which means that</p>
+
+<script type="math/tex; mode=display">\| \Pi x - \Pi y \| \leq \| x - y \|,</script>
+
+<p>for arbitrary <script type="math/tex">x</script> and <script type="math/tex">y</script>. A proof for this claim that uses the supporting
+hyperplane property can be found in a
+<a href="https://akshayka.github.io/optimization/2016/10/14/alternating-projections/">note on alternating
+projections</a>
+that I’ve published online.</p>
+
+<h3 id="an-acceleration-scheme-for-alternating-projections">5. An Acceleration Scheme for Alternating Projections</h3>
+
+<p>Alternating projections is simple; unfortunately, it can also be terribly slow.
+A pathological example where the two convex sets are halfspaces that are almost
+parallel, as illustrated below.</p>
+
+<p><img src="../assets/gubin_alt_proj.jpeg" class="full-width" alt="Pathological Alternating Projections" /></p>
+
+<p>Gubin proposed in this paper a small extension to alternating projections that
+he hoped would accelerate its convergence. The high-level idea is to surf
+supporting hyperplanes that are generated in the process of projecting onto
+the convex sets <script type="math/tex">Q_1</script> and <script type="math/tex">Q_2</script>, as illustrated below.</p>
+
+<p><img src="../assets/gubin_alt_proj_accel.jpeg" class="full-width" alt="Accelerated Projection Method" /></p>
+
+<p>The iterates are chosen in the following fashion:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align*}
+x_1 &= \Pi_1 x_0 \\
+x_2 &= \Pi_2 x_1 \\
+x_3 &= \Pi_1 x_2 \\
+x_4 &= x_1 + \lambda (x_3 - x_1),
+\end{align*} %]]></script>
+
+<p>where <script type="math/tex">\lambda</script> is chosen such that <script type="math/tex">x_4</script> falls on the intersection of
+the line spanning <script type="math/tex">x_1</script> and <script type="math/tex">x_3</script> with a hyperplane supporting <script type="math/tex">Q_2</script> at
+<script type="math/tex">x_2</script>. In particular,</p>
+
+<script type="math/tex; mode=display">\lambda = \frac{\|x_1 - x_2\|^2}{(x_1 - x_3)^T(x_1 - x_2)}.</script>
+
+<p>Subsequent iterates are attained in the same fashion.</p>
+
+<p>Gubin proves the convergence of this accelerated method, though he does not
+analyze the rate at which the method converges. But one can see empirically
+that his acceleration provides significant speed-ups in at least simple
+examples: e.g., in the pathological “almost parallel” halfspace
+intersection problem, <script type="math/tex">x_4</script> is already a solution.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+
+      <p>John Von Neumann. The Geometry of Orthogonal Spaces. <em>Functional Operators
+(AM-22), Vol. II.</em> Princeton University Press, 1950. Reprint of lecture
+notes originally compiled in 1933. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+
+      <p>Boyd, S., &amp; Dattorro, J. (2003). Alternating projections. <em>EE392o, Stanford
+University.</em> <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript" async
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>

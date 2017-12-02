@@ -58,6 +58,10 @@ blockquote:before {
   margin-right: auto;
 }
 
+.full-width {
+ max-width: 100%;
+}
+
 @media screen and (min-width: 600px) {
   #container {
     padding-left: 28px;
