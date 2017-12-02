@@ -7,7 +7,7 @@ be used to solve the problem.
 ## Novel contributions
 
 1. SOCPs encompass a large class of convex programs; previous canonicalization
-   suites targeted smaller problem clases, like QPs or QCQPs. Recall
+   suites targeted smaller problem classes, like QPs or QCQPs. Recall
   that linear programs, QPs, and QCQPs are all SOCPs.
 2. Problem parameters must enter through specific functions; this interface
    allows the code generator to circumvent all floating point operations.

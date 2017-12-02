@@ -1,6 +1,6 @@
 # [A Neural Algorithm of Artistic Style (Gatys 2015)](https://arxiv.org/abs/1508.06576)
-Gatys et al. present a way to repurpose a deep network trained for image 
-classification to redraw images in the style of some reference image. 
+Gatys et al. present a way to repurpose a deep network trained for image
+classification to redraw images in the style of some reference image.
 For example, this method can be used to render arbitrary photographs in the
 style of Van Gogh's _The Starry Night_.
 
@@ -17,7 +17,7 @@ In the above picture, the photograph of the waterfront is the content image,
 _The Starry Night_ is the style image, and the starry-night waterfront is the
 blended image.
 
-### The Algorithm 
+### The Algorithm
 Let $$C$$ denote the content image, $$S$$ the style image, and $$B$$ the blended
 image, and let $$f(C, l)$$ be the representation of $$C$$ in the $$l$$-th
 layer of the network (similarly for $$S$$ and $$B$$). The blended image is
@@ -32,7 +32,7 @@ $$
 \end{equation*}
 $$
 
-where $$\ell$$ is fixed, $$w_l$$ is a weight that incorporates the the size
+where $$\ell$$ is fixed, $$w_l$$ is a weight that incorporates the size
 of layer (see the paper for details), and $$B$$ is the optimization variable.
 Gram matrices are used above to capture correlations between the features
 within each layer. The $$\alpha$$-weighted expression measures the similarity
