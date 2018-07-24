@@ -41,4 +41,6 @@ Recent Advances and Limitations
 * Interior-point methods for optimization (Nemirovski and Todd)
 * Convergence rate of incremental aggregated gradient algorithms (Pablo Parrilo)
 * Towards Generalization and Simplicity in Continuous Control (kakade)
-
+* Stochastic subgradient method converges on tame functions (kakade) (https://arxiv.org/pdf/1804.07795.pdf)
+* Lifted Neural Networks (El Ghaoui)
+* Minimizing Finite Sums with the Stochastic Average Gradient (Shmidt)
