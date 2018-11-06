@@ -45,3 +45,14 @@ Recent Advances and Limitations
 * Lifted Neural Networks (El Ghaoui)
 * Minimizing Finite Sums with the Stochastic Average Gradient (Shmidt)
 * How to escape saddle points efficiently (jordan)
+* Local Minima and Convergence in Low-Rank Semidefinite Programming (Burer, Monteiro)
+* The non-convex Burer-Monteiro approach works on smooth semidefinite programs (Boumal)
+* Fast Exact Multiplication by the Hessian (Pearlmutter 1994)
+* The geometry of graphs and some of its algorithmic applications [LLR '94]
+* Expander Flows, Geometric Embeddings and Graph Partitioning [Arora 09]
+* Representation Tradeoffs for Hyperbolic Embeddings
+* improving distributional similarity with lessons learned from word embeddings
+* A La Carte Embedding:
+Cheap but Effective Induction of Semantic Feature Vectors
+* A CONVERGENCE
+ANALYSIS OF GRADIENT DESCENT FOR DEEP LINEAR NEURAL NETWORKS
