@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="lifted-neural-networks-el-ghaoui-2018httpsarxivorgabs180501532"><a href="https://arxiv.org/abs/1805.01532">Lifted Neural Networks (El Ghaoui 2018)</a></h1>
+
+<p>This paper introduces a family of feedforward neural networks in which
+each activation function is represented as an argmin of a convex optimization
+problem; these representations are encoded in the problem of training a
+neural network via penalties. The key to arriving at such a representation
+is to <em>lift</em> the standard neural network optimization problem into a
+higher-dimensional space by introducing for each layer a variable representing
+its output layer, representing each activation function as a argmin of a
+divergence function that is convex in each argument (but not necessarily
+jointly convex in both arguments), and by coercing the divergences to be small
+via penalization. For this reason, El Ghaoui and his co-authors say that
+instances of this family are “lifted” neural networks.</p>
+
+<p>The upshot: Any lifted neural network can be optimized in a block-coordinate,
+gradient-free fashion using well-known algorithms for convex optimization,
+and, after training, the values of its optimization variables can be used
+as initialization for the corresponding “unlifted” neural network.</p>
+
+<p>This paper can be understood as part of an ongoing research effort to
+simplify the mathematical structure of neural networks and to express them
+in principled ways that are more amenable to training<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup><sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+
+<p>The experiments in this paper are not particularly compelling. MNIST
+is used as a benchmark, and the results aren’t great. What’s more, training
+time is not reported (only the number of epochs is reported). The main
+contribution of this paper is its theoretical framework.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+
+      <p>Amos, B., Xu, L., &amp; Kolter, J. Z. (2016). Input convex neural networks.
+arXiv preprint arXiv:1609.07152. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+
+      <p>Zhang, Y., Liang, P., &amp; Wainwright, M. J. (2016). Convexified convolutional
+neural networks. arXiv preprint arXiv:1609.01000. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript" async
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>

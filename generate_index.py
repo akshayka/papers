@@ -5,7 +5,7 @@ import re
 PDF_META = 'PDF'
 MD_WILDCARD = 'summaries/*.md'
 HTML_WILDCARD = 'html/*.html'
-TITLE_PATTERN = r'^# \[(.*?) \(([a-zA-z\']*) ([0-9]{4})\)'
+TITLE_PATTERN = r'^# \[(.*?) \(([a-zA-z\s\']*) ([0-9]{4})\)'
 
 md_files = sorted(glob.glob(MD_WILDCARD))
 html_files = sorted(glob.glob(HTML_WILDCARD))
