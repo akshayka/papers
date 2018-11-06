@@ -5,12 +5,18 @@ each activation function is represented as an argmin of a convex optimization
 problem; these representations are encoded in the problem of training a
 neural network via penalties. The key to arriving at such a representation
 is to *lift* the standard neural network optimization problem into a
-higher-dimensional space by introducing for each layer a variable representing
-its output layer, representing each activation function as a argmin of a
+higher-dimensional space by 
+
+1. introducing for each layer a variable representing
+its output layer,
+2. presenting each activation function as an argmin of a
 divergence function that is convex in each argument (but not necessarily
-jointly convex in both arguments), and by coercing the divergences to be small
-via penalization. For this reason, El Ghaoui and his co-authors say that
-instances of this family are "lifted" neural networks.
+jointly convex in both arguments), and
+3. coercing the divergences to be small
+via penalization.
+
+El Ghaoui and his co-authors refer to neural networks that have been
+rewritten in this way as "lifted" neural networks.
 
 The upshot: Any lifted neural network can be optimized in a block-coordinate,
 gradient-free fashion using well-known algorithms for convex optimization,
