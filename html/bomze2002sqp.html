@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href='../style.css' rel='stylesheet'>
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+</head>
+
+<body>
+  <div id="container">
+    <center>
+      <h1 id="indextitle"><a class="title" href="../index.html">Papers</a></h1>
+    </center>
+
+  <p hidden>
+  $$
+  \newcommand{\pmi}{\operatorname{pmi}}
+  \newcommand{\inner}[2]{\langle{#1}, {#2}\rangle}
+  \newcommand{\Pb}{\operatorname{Pr}}
+  \newcommand{\E}{\mathbb{E}}
+  \newcommand{\RR}{\mathbf{R}}
+  \newcommand{\script}[1]{\mathcal{#1}}
+  \newcommand{\Set}[2]{\{{#1} : {#2}\}}
+  \newcommand{\argmin}[2]{\underset{#1}{\operatorname{argmin}} {#2}}
+  \newcommand{\optmin}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{minimize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optmax}[3]{
+	\begin{align*}
+	& \underset{#1}{\text{maximize}} & & #2 \\
+	& \text{subject to} & & #3
+	\end{align*}
+  }
+  \newcommand{\optfind}[2]{
+	\begin{align*}
+	& {\text{find}} & & #1 \\
+	& \text{subject to} & & #2
+	\end{align*}
+  }
+  $$
+  </p>
+
+<h1 id="solving-standard-quadratic-optimization-problems-via-semidefinite-and-copositive-programming-bomze-2002httpspureuvtnlwsportalfilesportal844599solvingstpdf"><a href="https://pure.uvt.nl/ws/portalfiles/portal/844599/solvingst.pdf">Solving standard quadratic optimization problems via semidefinite and copositive programming (Bomze 2002)</a></h1>
+
+<p>A standard quadratic optimization problem is a program of the form</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{array}{ll}
+\mbox{minimize} & \frac{1}{2} x^TQx \\
+\mbox{subject to} & x \in \Delta,
+\end{array} %]]></script>
+
+<p>where <script type="math/tex">\Delta</script> is the standard <script type="math/tex">n</script>-dimensional Euclidean simplex
+(<script type="math/tex">\{ x \in \RR^n_{+} : \sum_{i=1}^{n} x_i = 1\}</script>). This problem is non-convex,
+but it can be reformulated as a convex program known as a copositive problem.
+Copositive programming is NP-hard (which students of convex optimization might
+find surprising, as this means that convex optimization is NP-hard); hence,
+quadratic optimization over the simplex is also NP-hard. Nonetheless,
+Bomze and de Klerk provide in this paper a polynomial-time approximation
+scheme (PTAS) for quadratic optimization, which furnishes
+<script type="math/tex">\epsilon</script>-suboptimal solutions in time that is polynomial in the problem
+dimension. In particular, the authors show how to approximate the copositive
+cone using either linear inequalities or linear matrix inequalities (LMIs)
+using the methodologies of de Klerk and Pasechnik<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> and Parrilo<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>, and they
+leverage these methodologies in approximation algorithms.</p>
+
+<p>The copositive cone <script type="math/tex">\script{C}_n</script> is the set of symmetric matrices</p>
+
+<script type="math/tex; mode=display">\Set{X \in \script{S}^n}{y^TXy \geq 0,\quad \text{for all } y \in \RR^n_+};</script>
+
+<p>it is a (strict) superset of the positive semidefinite cone. Parrilo <sup id="fnref:2:1"><a href="#fn:2" class="footnote">2</a></sup>
+showed that the copositive cone can be approximated by a system of LMIs.
+Bomze’s SDP PTAS replaces the copositive cone in the reformulated quadratic
+program with an appropriate LMI system, while his LP PTAS replaces it
+with polyhedral constraints. Both schemes provide a hierarchy of relaxations
+that can be used to obtain tighter and tighter approximates of the optimal
+solution. Each scheme is in fact a PTAS because SDPs and LPs can be solved
+in polynomial time (up to an <script type="math/tex">\epsilon</script> additive error).</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+
+      <p>de Klerk, E. and Pasechnik, D.V. (2002), Approximation of the Stability
+Number of a Graph via Copositive Programming, SIAM Journal of Optimization
+12(4), 875–892 <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+
+      <p>Parrilo, P.A. (2000), Structured Semidefinite Programs and Semi-algebraic
+Geometry Methods in Robustness and Optimization. PhD thesis, California
+Institute of Technology, | Pasadena, California, USA. Available at:
+http://www.cds.caltech.edu/ pablo/. <a href="#fnref:2" class="reversefootnote">&#8617;</a> <a href="#fnref:2:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+  </ol>
+</div>
+  <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        "HTML-CSS": { availableFonts: ["TeX"] },
+         TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+   </script>
+   <script type="text/javascript" async
+       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  </div>
+</body>
+</html>
