@@ -52,7 +52,12 @@ Recent Advances and Limitations
 * Expander Flows, Geometric Embeddings and Graph Partitioning [Arora 09]
 * Representation Tradeoffs for Hyperbolic Embeddings
 * improving distributional similarity with lessons learned from word embeddings
-* A La Carte Embedding:
-Cheap but Effective Induction of Semantic Feature Vectors
-* A CONVERGENCE
-ANALYSIS OF GRADIENT DESCENT FOR DEEP LINEAR NEURAL NETWORKS
+* A La Carte Embedding: Cheap but Effective Induction of Semantic Feature Vectors
+* A CONVERGENCE ANALYSIS OF GRADIENT DESCENT FOR DEEP LINEAR NEURAL NETWORKS
+* Computational Complexity, NP Completeness and Optimization Duality: A Survey
+* Bundle Methods for Regularized Risk Minimization (related to reducing convex programs to LPs)
+* Solving standard quadratic optimization problems via semidefinite and copositive programming (convex program that is NP-hard via copositive programming, https://www.ti.inf.ethz.ch/ew/lehre/ApproxSDP09/notes/copositive.pdf)
+* An Exact duality Theory for Semidefinite Programming and its Complexity Implications (strong duality without assumptions(?!))
+* Notes on interior-point methods by Matousek (https://www.ti.inf.ethz.ch/ew/lehre/ApproxSDP09/notes/interior.pdf)
+* Duality for SOCPs (https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture10.pdf)
+* Interior-point methods for optimization* Copositive Programming – a Survey* The Supporting Halfspace--Quadratic Programming Strategy for the Dual of the Best Approximation Problem (SJO)
